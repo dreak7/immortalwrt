@@ -20,6 +20,22 @@ define Device/rk3399
   BOOT_FLOW := pine64-bin
 endef
 
+define Device/embedfire_doornet2
+  $(Device/rk3399)
+  DEVICE_VENDOR := EmbedFire
+  DEVICE_MODEL := DoorNet2
+  DEVICE_DTS := rk3399-doornet2
+  UBOOT_DEVICE_NAME := nanopi-r4se-rk3399
+  DEVICE_PACKAGES := kmod-r8168 kmod-fs-ext4 kmod-fs-overlayfs kmod-dm kmod-ipt-nat kmod-nft-core \
+    kmod-nf-nat kmod-br-netfilter kmod-veth kmod-bridge kmod-tun containerd runc \
+    dockerd cpufreq luci-app-store luci-app-istorex luci-app-openclash mosdns \
+    luci-app-smartdns luci-app-argon-config luci-app-filebrowser luci-app-firewall \
+    luci-app-upnp luci-app-sqm luci-app-ttyd luci-app-acme luci-app-diskman \
+    luci-app-frpc luci-app-minidlna luci-app-natmap luci-app-netdata luci-app-qos \
+    luci-app-ramfree luci-app-udpxy luci-app-zerotier
+endef
+TARGET_DEVICES += embedfire_doornet2
+
 define Device/rk3528
   SOC := rk3528
   KERNEL_LOADADDR := 0x03000000

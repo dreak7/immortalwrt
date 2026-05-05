@@ -146,6 +146,13 @@ define U-Boot/nanopi-r4se-rk3399
     friendlyarm_nanopi-r4se
 endef
 
+define U-Boot/doornet2-rk3399
+  $(U-Boot/rk3399/Default)
+  NAME:=DoorNet2
+  BUILD_DEVICES:= \
+    embedfire_doornet2
+endef
+
 define U-Boot/rock-4c-plus-rk3399
   $(U-Boot/rk3399/Default)
   NAME:=ROCK 4C+
@@ -514,6 +521,7 @@ endef
 UBOOT_TARGETS := \
   guangmiao-g4c-rk3399 \
   nanopc-t4-rk3399 \
+  doornet2-rk3399 \
   nanopi-r4s-rk3399 \
   nanopi-r4se-rk3399 \
   rock-4c-plus-rk3399 \
