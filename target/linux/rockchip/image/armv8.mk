@@ -29,7 +29,8 @@ define Device/embedfire_doornet2
   RKIMG_ROOTFS_PARTSIZE := 1024
   DEVICE_PACKAGES := kmod-r8168 kmod-fs-ext4 kmod-fs-overlayfs kmod-dm kmod-ipt-nat kmod-nft-core \
     kmod-nf-nat kmod-br-netfilter kmod-veth kmod-bridge kmod-tun containerd runc \
-    dockerd cpufreq luci-app-store luci-app-istorex luci-app-openclash mosdns \
+    dockerd cpufreq opkg libuci-lua mount-utils xz-utils luci-lib-ipkg luci-lib-taskd \
+    luci-app-store luci-app-openclash mosdns \
     luci-app-smartdns luci-app-argon-config luci-app-filebrowser luci-app-firewall \
     luci-app-upnp luci-app-sqm luci-app-ttyd luci-app-acme luci-app-diskman \
     luci-app-frpc luci-app-minidlna luci-app-natmap luci-app-netdata luci-app-qos \
