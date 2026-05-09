@@ -1,0 +1,16 @@
+#!/bin/sh
+
+. /lib/functions/uci-defaults.sh
+
+board="$(board_name)"
+
+case "$board" in
+embedfire,doornet2)
+	board_config_update
+	ucidef_set_interface "lan" device "eth1" protocol "static" ipaddr "192.168.11.1" netmask "255.255.255.0"
+	ucidef_set_interface "wan" device "eth0" protocol "dhcp"
+	board_config_flush
+	;;
+esac
+
+exit 0

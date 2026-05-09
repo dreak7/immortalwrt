@@ -69,6 +69,7 @@ xunlong,orangepi-r1-plus-lts)
 	set_interface_core 4 "eth1" "xhci-hcd:usb[0-9]+"
 	;;
 friendlyarm,nanopi-r4s|\
+embedfire,doornet2|\
 friendlyarm,nanopi-r4se|\
 friendlyarm,nanopi-r4s-enterprise|\
 friendlyarm,nanopi-r6c|\
