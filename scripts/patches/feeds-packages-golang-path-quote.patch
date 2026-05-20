@@ -1,0 +1,13 @@
+diff --git a/feeds/packages/lang/golang/golang-package.mk b/feeds/packages/lang/golang/golang-package.mk
+index 1cbe585..8ce3bc3 100644
+--- a/feeds/packages/lang/golang/golang-package.mk
++++ b/feeds/packages/lang/golang/golang-package.mk
+@@ -180,7 +180,7 @@ endef
+ # Some packages like docker use go directly and don't process vars like GO, so
+ # just add selected version to path and insert it into several used vars.
+ GO_BIN_PATH:= \
+-	PATH=$(STAGING_DIR_HOSTPKG)/lib/go-$(GO_HOST_VERSION)/bin:$(PATH)
++	PATH="$(STAGING_DIR_HOSTPKG)/lib/go-$(GO_HOST_VERSION)/bin:$(PATH)"
+ 
+ GO_PKG_BUILD_CONFIG_VARS= \
+ 	$(GO_BIN_PATH) \

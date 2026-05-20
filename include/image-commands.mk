@@ -455,7 +455,7 @@ define Build/fit-its
 endef
 
 define Build/fit-image
-	$(call locked,PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) mkimage $(if $(findstring external,$(word 3,$(1))),\
+	$(call locked,PATH="$(LINUX_DIR)/scripts/dtc:$(PATH)" mkimage $(if $(findstring external,$(word 3,$(1))),\
 		-E -B 0x1000 $(if $(findstring static,$(word 3,$(1))),-p 0x1000)) -f $@.its $@.new, \
 	  gen-cpio$(if $(TARGET_PER_DEVICE_ROOTFS),.$(ROOTFS_ID/$(DEVICE_NAME))))
 	@mv $@.new $@
@@ -559,7 +559,7 @@ define Build/gl-qsdk-factory
 		$(GL_UBI) \
 		$(GL_IMGK)
 
-	PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) mkimage -f \
+	PATH="$(LINUX_DIR)/scripts/dtc:$(PATH)" mkimage -f \
 		$(GL_ITS) \
 		$(GL_IMGK)
 
@@ -707,21 +707,21 @@ endef
 define Build/qsdk-ipq-factory-mmc
 	$(TOPDIR)/scripts/mkits-qsdk-ipq-image.sh \
 		$@.its kernel $(IMAGE_KERNEL) rootfs $(IMAGE_ROOTFS)
-	PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) mkimage -f $@.its $@.new
+	PATH="$(LINUX_DIR)/scripts/dtc:$(PATH)" mkimage -f $@.its $@.new
 	@mv $@.new $@
 endef
 
 define Build/qsdk-ipq-factory-nand
 	$(TOPDIR)/scripts/mkits-qsdk-ipq-image.sh \
 		$@.its ubi $@
-	PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) mkimage -f $@.its $@.new
+	PATH="$(LINUX_DIR)/scripts/dtc:$(PATH)" mkimage -f $@.its $@.new
 	@mv $@.new $@
 endef
 
 define Build/qsdk-ipq-factory-nor
 	$(TOPDIR)/scripts/mkits-qsdk-ipq-image.sh \
 		$@.its hlos $(IMAGE_KERNEL) rootfs $(IMAGE_ROOTFS)
-	PATH=$(LINUX_DIR)/scripts/dtc:$(PATH) mkimage -f $@.its $@.new
+	PATH="$(LINUX_DIR)/scripts/dtc:$(PATH)" mkimage -f $@.its $@.new
 	@mv $@.new $@
 endef
 

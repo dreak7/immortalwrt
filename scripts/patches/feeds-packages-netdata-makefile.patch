@@ -1,0 +1,13 @@
+diff --git a/feeds/packages/admin/netdata/Makefile b/feeds/packages/admin/netdata/Makefile
+index 60b6a43..19225c4 100644
+--- a/feeds/packages/admin/netdata/Makefile
++++ b/feeds/packages/admin/netdata/Makefile
+@@ -61,6 +61,8 @@ CONFIGURE_ARGS += \
+ 	--disable-plugin-freeipmi \
+ 	--disable-plugin-cups \
+ 	--disable-plugin-xenstat \
++	--disable-cloud \
++	--disable-exporting-pubsub \
+ 	--disable-exporting-prometheus-remote-write \
+ 	--disable-unit-tests \
+ 	--disable-ml

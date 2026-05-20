@@ -1,0 +1,69 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -813,9 +813,9 @@
+     if test "$can_enable_ng" = "yes"; then
+         enable_aclk="yes"
+         AC_DEFINE([ENABLE_ACLK], [1], [netdata ACLK])
+         OPTIONAL_ACLK_CFLAGS="-I \$(abs_top_srcdir)/mqtt_websockets/src/include -I \$(abs_top_srcdir)/mqtt_websockets/c-rbuf/include -I \$(abs_top_srcdir)/aclk/aclk-schemas"
+         OPTIONAL_PROTOBUF_CFLAGS="${PROTOBUF_CFLAGS}"
+-        CXX11FLAG="-std=c++11"
++        CXX11FLAG="-std=c++14"
+         OPTIONAL_PROTOBUF_LIBS="${PROTOBUF_LIBS}"
+     fi
+ fi
+@@ -1146,18 +1146,18 @@
+-# Check if C++ toolchain does not support C++11. Fail if ML was explicitly requested.
++# Check if C++ toolchain does not support C++14. Fail if ML was explicitly requested.
+ AC_LANG_PUSH([C++])
+-AX_CHECK_COMPILE_FLAG([-std=c++11], [have_cxx11=yes], [have_cxx11=no])
++AX_CHECK_COMPILE_FLAG([-std=c++14], [have_cxx11=yes], [have_cxx11=no])
+ AC_LANG_POP([C++])
+ 
+-# PPC64LE needs -std=gnu++11 in order to build dlib. However, the rest of
+-# the agent's components use and have been tested only with -std=c++11.
++# PPC64LE needs a newer C++ mode in order to build dlib. However, the rest of
++# the agent's components use and have been tested only with -std=c++14.
+ # Skip ML compilation on that CPU until we reorganize and test the C++ flags.
+ if test "${host_cpu}" = "powerpc64le"; then
+     have_cxx11="no"
+ fi
+ 
+ if test "${enable_ml}" = "yes" -a "${have_cxx11}" = "no"; then
+-    AC_MSG_ERROR([You have explicitly requested --enable-ml functionality but it cannot be built without a C++11 toolchain.])
++    AC_MSG_ERROR([You have explicitly requested --enable-ml functionality but it cannot be built without a C++14 toolchain.])
+ else
+-    CXX11FLAG="$CXX11FLAG -std=c++11"
++    CXX11FLAG="$CXX11FLAG -std=c++14"
+ fi
+ 
+@@ -1359,7 +1359,7 @@
+ if test "${enable_exporting_pubsub}" != "no" -a "${have_pubsub_protos}" = "yes" -a "${have_CXX_compiler}" = "yes"; then
+     enable_exporting_pubsub="yes"
+     AC_DEFINE([ENABLE_EXPORTING_PUBSUB], [1], [Pub/Sub API usability])
+     OPTIONAL_PUBSUB_CFLAGS="${GRPC_CFLAGS} ${PUBSUB_CFLAGS}"
+-    CXX11FLAG="-std=c++11"
++    CXX11FLAG="-std=c++14"
+     OPTIONAL_PUBSUB_LIBS="${GRPC_LIBS} ${PUBSUB_LIBS}"
+ else
+     enable_pubsub="no"
+@@ -1379,7 +1379,7 @@
+     AC_LANG_CPLUSPLUS
+     save_LIBS="${LIBS}"
+     LIBS="-lsnappy"
+     save_CXXFLAGS="${CXXFLAGS}"
+-    CXXFLAGS="${CXXFLAGS} -std=c++11"
++    CXXFLAGS="${CXXFLAGS} -std=c++14"
+ 
+     AC_TRY_LINK(
+         [
+@@ -1425,7 +1425,7 @@
+ if test "${enable_exporting_prometheus_remote_write}" != "no" -a "${have_libprotobuf}" = "yes" -a "${have_libsnappy}" = "yes" \
+                                                            -a "${have_protoc}" = "yes" -a "${have_CXX_compiler}" = "yes"; then
+     enable_exporting_prometheus_remote_write="yes"
+     AC_DEFINE([ENABLE_PROMETHEUS_REMOTE_WRITE], [1], [Prometheus remote write API usability])
+     OPTIONAL_PROMETHEUS_REMOTE_WRITE_CFLAGS="${SNAPPY_CFLAGS} -I \$(abs_top_srcdir)/exporting/prometheus/remote_write"
+-    CXX11FLAG="-std=c++11"
++    CXX11FLAG="-std=c++14"
+     OPTIONAL_PROMETHEUS_REMOTE_WRITE_LIBS="${SNAPPY_LIBS}"
+     OPTIONAL_PROTOBUF_CFLAGS="${PROTOBUF_CFLAGS}"
+     OPTIONAL_PROTOBUF_LIBS="${PROTOBUF_LIBS}"
