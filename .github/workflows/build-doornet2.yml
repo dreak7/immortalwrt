@@ -64,8 +64,8 @@ jobs:
 
       - name: Prepare feeds
         run: |
-          bash ./scripts/feeds update -a
-          bash ./scripts/feeds install -a
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
           bash ./scripts/doornet2-apply-feed-patches.sh
 
       - name: Prepare config
