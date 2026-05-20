@@ -43,8 +43,9 @@ jobs:
 
       - name: Fix script permissions
         run: |
-          chmod +x scripts/feeds
-          chmod +x scripts/doornet2-apply-feed-patches.sh
+          while IFS= read -r file; do
+            chmod +x "$file"
+          done < <(grep -rl '^#!' scripts)
 
       - name: Cache downloads
         uses: actions/cache@v4
